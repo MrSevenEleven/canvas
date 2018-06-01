@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/particleImage.css">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        div#wrapper{
+            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+        #particleImage{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        /*div#uplevel{*/
+            /*background: red;*/
+            /*position: absolute;*/
+            /*top: 20px;*/
+            /*left: 100px;*/
+            /*width:100px;*/
+            /*height: 100px;*/
+            /*z-index: 1;*/
+        /*}*/
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/particleImage.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+      <!--<canvas id="particleImage" width="600" height="600"></canvas>-->
+        <!--<div id="uplevel"></div>-->
+    </div>
+</body>
+    <script>
+        $("#wrapper").particleImage();
+        // (function(){
+        //     var canvas=document.getElementById("particleImage");
+        //     var ctx=null;
+        //     if(canvas.getContext){
+        //         ctx=canvas.getContext('2d');
+        //     }
+        //
+        //     var particles=[];
+        //     var rows=300,cols=300;
+        //     var speed=15;
+        //     var s_width,s_height,image;
+        //     var img=new Image();
+        //     img.src="images/isux.png";
+        //     img.onload=function(){
+        //         ctx.drawImage(img,0,0,600,600);
+        //         image=ctx.getImageData(0,0,600,600);
+        //         s_width=parseInt(image.width/rows);
+        //         s_height=parseInt(image.height/cols);
+        //         calculatePos();
+        //     };
+        //
+        //
+        //     function calculatePos() {
+        //         var data=image.data;
+        //
+        //         // for(var i=0;i<data.length/4;i++){
+        //         //     if(data[4*i]<255){
+        //         //         var particle={
+        //         //             x:300,
+        //         //             y:300,
+        //         //             par_x:i%600,
+        //         //             par_y:(i/600).toFixed(0),
+        //         //             fillStyle:'rgba('+data[4*i]+','+data[4*i+1]+','+data[4*i+2]+','+data[4*i+3]+')',
+        //         //         };
+        //         //         var startx=particle.x;
+        //         //         var endx=particle.par_x;
+        //         //         var starty=particle.y;
+        //         //         var endy=particle.par_y;
+        //         //         particle.speedX=(endx-startx)/speed;
+        //         //         particle.speedY=(endy-starty)/speed;
+        //         //         particle.xx=particle.x;
+        //         //         particle.yy=particle.y;
+        //         //         particles.push(particle);
+        //         //     }
+        //         // }
+        //
+        //         for(var i=1;i<=rows;i++){
+        //             for(var j=1;j<=cols;j++){
+        //                 var pos=[(i*s_height-1)*image.width+(j*s_width-1)]*4;
+        //                 if(data[pos]<255||data[pos+1]<255||data[pos+2]<255||data[pos+3]<255){
+        //                     var particle={
+        //                         x:Math.random()*600,
+        //                         y:Math.random()*600,
+        //                         par_x:j*s_width,
+        //                         par_y:i*s_height,
+        //                         fillStyle:'rgba('+data[pos]+','+data[pos+1]+','+data[pos+2]+','+data[pos+3]+')',
+        //                     };
+        //                     var startx=particle.x;
+        //                     var endx=particle.par_x;
+        //                     var starty=particle.y;
+        //                     var endy=particle.par_y;
+        //                     particle.speedX=(endx-startx)/speed;
+        //                     particle.speedY=(endy-starty)/speed;
+        //                     particle.xx=particle.x;
+        //                     particle.yy=particle.y;
+        //                     particles.push(particle);
+        //                 }
+        //             }
+        //         }
+        //
+        //
+        //
+        //         drawImage();
+        //     }
+        //     var animate;
+        //     var count=0;
+        //     function drawImage(){
+        //         ctx.clearRect(0,0,canvas.width,canvas.height);
+        //         var len=particles.length;
+        //         for(var i=0;i<len;i++){
+        //             ctx.fillStyle=particles[i].fillStyle;
+        //             ctx.fillRect(particles[i].x,particles[i].y,s_width,s_height);
+        //             if(count<speed-1){
+        //                 particles[i].x+=particles[i].speedX;
+        //                 particles[i].y+=particles[i].speedY;
+        //             }
+        //             // else if(count==speed-1){
+        //             //     particles[i].x=particles[i].par_x;
+        //             //     particles[i].y=particles[i].par_y;
+        //             // }
+        //
+        //         }
+        //         if(count==speed-1){
+        //             count=0;
+        //             for(var i=0;i<len;i++){
+        //                 particles[i].speedX=0-particles[i].speedX;
+        //                 particles[i].speedY=0-particles[i].speedY;
+        //             }
+        //             cancelAnimationFrame(animate);
+        //             setTimeout(function(){
+        //                 drawImage();
+        //             },5000);
+        //         }else{
+        //             animate=requestAnimationFrame(drawImage);
+        //             count++
+        //         }
+        //     }
+        //
+        //
+        // })()
+    </script>
+</html>
