@@ -16,8 +16,8 @@
         }
         div#wrapper{
             margin: 0 auto;
-            width: 300px;
-            height: 300px;
+            width: 600px;
+            height: 600px;
             position: relative;
         }
         #particleImage{
@@ -46,7 +46,10 @@
     </div>
 </body>
     <script>
-        $("#wrapper").particleImage();
+        $("#wrapper").particleImage({
+            speed:10,
+            back:false,
+        });
         // (function(){
         //     var canvas=document.getElementById("particleImage");
         //     var ctx=null;

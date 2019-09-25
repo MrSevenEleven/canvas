@@ -4,18 +4,16 @@
         cols:300,//粒子列数，列数应为高度像素的约数
         speed:15,//粒子移动速度（帧数）
         imgURL:"images/isux.png",//图片地址
-        completion:0.9//图片重绘度（0-1）1表示图片完整复原
+        completion:0.9,//图片重绘度（0-1）1表示图片完整复原
+        back:true,//重绘结束是否还原粒子平铺
+        stayTime:4000,//重绘结束至粒子重新平铺开始的时间(back为true时有效)
 
     };
     var particles=[];
-    // var rows=300,cols=300;
-    // var speed=15;
     var _width,_height;
     var s_width,s_height,image;
-    // var canvas;
     var ctx;
     var settings;
-    // var settings_;
     $.fn.particleImage=function(options){
         settings=$.extend({},defaults,options);
         this.each(function(){
@@ -115,16 +113,18 @@
                 // }
 
             }
-            if(count==settings.speed*settings.completion){
-                count=0;
-                for(var i=0;i<len;i++){
-                    particles[i].speedX=0-particles[i].speedX;
-                    particles[i].speedY=0-particles[i].speedY;
-                }
+            if(count==parseInt(settings.speed*settings.completion)){
                 cancelAnimationFrame(animate);
-                setTimeout(function(){
-                    drawImage();
-                },5000);
+                if(settings.back){
+                    count=0;
+                    for(var i=0;i<len;i++){
+                        particles[i].speedX=0-particles[i].speedX;
+                        particles[i].speedY=0-particles[i].speedY;
+                    }
+                    setTimeout(function(){
+                        drawImage();
+                    },settings.stayTime);
+                }
             }else{
                 animate=requestAnimationFrame(drawImage);
                 count++
