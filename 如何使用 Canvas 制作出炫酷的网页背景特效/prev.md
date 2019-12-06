@@ -71,4 +71,12 @@ var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 ```
     
+&nbsp;
+### 绘制路径
+
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 
