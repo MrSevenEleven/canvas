@@ -93,6 +93,6 @@ var context = canvas.getContext("2d");
  quadraticCurveTo()|	创建二次方贝塞尔曲线
  bezierCurveTo()|	创建三次方贝塞尔曲线
  isPointInPath()|	如果指定的点位于当前路径中，则返回 true，否则返回 false
- 
+
 #### 使用 Canvas 绘制图像的步骤：
-![绘制图像的步骤](如何使用 Canvas 制作出炫酷的网页背景特效/sourse/1.png "绘制图像的步骤")
+![绘制图像的步骤](/sourse/1.png "绘制图像的步骤")
