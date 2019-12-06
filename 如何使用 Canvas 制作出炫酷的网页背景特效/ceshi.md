@@ -1,27 +1,12 @@
-**加粗**
+[www.baidu.com][百度]
 
-_斜体_
+[百度]: www.baidu.com
 
-# 标题一
 
-## 标题二
 
-### 标题三
+[www.qq.com][腾讯]
 
-#### 标题四
+[腾讯]: www.qq.com
 
-##### 标题五
 
-###### 标题六
-
->代码片段
-
-```var i=0;
-i+=1;
-console.log(i);
-```
-
-- 列表
-- 列表
-
-[链接](http://www.baidu.com "链接")
+[百度]（www.baidu.com）
