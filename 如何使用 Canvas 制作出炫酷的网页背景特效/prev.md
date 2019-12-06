@@ -95,4 +95,4 @@ var context = canvas.getContext("2d");
  isPointInPath()|	如果指定的点位于当前路径中，则返回 true，否则返回 false
  
 #### 使用 Canvas 绘制图像的步骤：
-![绘制图像的步骤]("../sourse/1.png" "绘制图像的步骤")
+![绘制图像的步骤](../sourse/1.png "绘制图像的步骤")
