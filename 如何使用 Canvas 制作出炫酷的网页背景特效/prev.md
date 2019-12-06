@@ -58,6 +58,15 @@
 &nbsp;
 ### 获取Canvas对象
 
+    var content=canvas.getContext(contextType, contextAttributes);
+
+#### 上下文类型（contextType）：
+
+- 2d：代表一个二维渲染上下文
+- webgl（或"experimental-webgl"）：代表一个三维渲染上下文
+- webgl2（或"experimental-webgl2"）：代表一个三维渲染上下文；这种情况下只能在浏览器中实现 WebGL 版本2 (OpenGL ES 3.0)。
 
 
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
 
