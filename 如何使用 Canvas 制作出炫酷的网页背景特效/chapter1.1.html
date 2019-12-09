@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas{
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script>
+        var canvas=document.getElementById("canvas");
+        var context=canvas.getContext("2d");
+
+        // 圆弧
+        // context.beginPath();
+        // context.arc(100,100,50,0,1.5*Math.PI,false);
+        // context.closePath();
+        // context.strokeStyle="green";
+        // context.stroke();
+
+        // context.beginPath();
+        // context.arc(200,200,50,0,1.5*Math.PI,true);
+        // context.closePath();
+        // context.fillStyle="red";
+        // context.fill();
+
+        // 绘制直线
+        // context.beginPath();
+        // context.arc(200,200,50,0,1.5*Math.PI,true);
+        // // context.moveTo(200,200);
+        // context.lineTo(300,300);
+        // context.strokeStyle='#000';
+        // context.stroke();
+        //直线样式
+
+        // 绘制矩形
+        // context.beginPath();
+        // context.fillStyle = '#fff';
+        // context.fillRect(10, 10, 100, 100);
+        // context.strokeStyle = '#fff';
+        // context.strokeRect(130, 10, 100, 100);
+
+        // 模糊
+        context.beginPath();
+        context.arc(100,100,50,0,2*Math.PI,false);
+        context.fillStyle = '#fff';
+        context.shadowBlur = 20;
+        context.shadowColor = '#fff';
+        context.fill()
+
+
+
+
+
+    </script>
+</body>
+</html>
