@@ -173,14 +173,13 @@ addColorStop()	|规定渐变对象中的颜色和停止位置
 - x1：结束渐变的 x 坐标
 - y1：结束渐变的 y 坐标
 
-
-    例：
-    var grd = context.createLinearGradient(100,100,100,200);
-    grd.addColorStop(0,'pink');//设置颜色断点，可添加多个addColorStop
-    grd.addColorStop(1,'white');
-    
-    context.fillStyle = grd;//将创建的渐变作为颜色赋值给fillStyle属性
-    context.fillRect(100,100,200,200);
+        例：
+        var grd = context.createLinearGradient(100,100,100,200);
+        grd.addColorStop(0,'pink');//设置颜色断点，可添加多个addColorStop
+        grd.addColorStop(1,'white');
+        
+        context.fillStyle = grd;//将创建的渐变作为颜色赋值给fillStyle属性
+        context.fillRect(100,100,200,200);
     
 >注：如果fillRect创建的图形坐标尺寸与createLinearGradient内参数设置的渐变尺寸不吻合，相当于fillRect图形截取createLinearGradient对应坐标中的一段填充
 
