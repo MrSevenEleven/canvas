@@ -134,7 +134,8 @@ var context = canvas.getContext("2d");
 - fillRect(x,y,width,height)：绘制一个实心矩形
 - strokeRect(x,y,width,height)：绘制一个空心矩形
 
-###颜色、样式和阴影
+&nbsp;
+### 颜色、样式和阴影
  
  可以给路径设置哪些属性来改变其样式。
  
@@ -147,7 +148,7 @@ var context = canvas.getContext("2d");
   shadowOffsetX	|设置或返回阴影距形状的水平距离
   shadowOffsetY	|设置或返回阴影距形状的垂直距离
 
-####设置阴影
+#### 设置阴影
 
     context.beginPath();
     context.arc(100,100,50,0,2*Math.PI,false);
@@ -156,7 +157,7 @@ var context = canvas.getContext("2d");
     context.shadowColor = '#fff';
     context.fill()
 
-####设置渐变
+#### 设置渐变
 
  **方法**|**描述**
 ------------- | ------------- 
@@ -164,3 +165,83 @@ createLinearGradient()	|创建线性渐变（用在画布内容上）
 createPattern()	|在指定的方向上重复指定的元素
 createRadialGradient()	|创建放射状/环形的渐变（用在画布内容上）
 addColorStop()	|规定渐变对象中的颜色和停止位置
+
+    context.createLinearGradient(x0,y0,x1,y1)
+
+- x0：开始渐变的 x 坐标
+- y0：开始渐变的 y 坐标
+- x1：结束渐变的 x 坐标
+- y1：结束渐变的 y 坐标
+
+
+    例：
+    var grd = context.createLinearGradient(100,100,100,200);
+    grd.addColorStop(0,'pink');//设置颜色断点，可添加多个addColorStop
+    grd.addColorStop(1,'white');
+    
+    context.fillStyle = grd;//将创建的渐变作为颜色赋值给fillStyle属性
+    context.fillRect(100,100,200,200);
+    
+>注：如果fillRect创建的图形坐标尺寸与createLinearGradient内参数设置的渐变尺寸不吻合，相当于fillRect图形截取createLinearGradient对应坐标中的一段填充
+
+
+&nbsp;
+### 图形转换
+
+ **方法**|**描述**
+------------- | ------------- 
+scale(scalewidth,scaleheight)	|缩放当前绘图至更大或更小
+rotate()	|旋转当前绘图
+translate()	|重新映射画布上的 (0,0) 位置
+transform()	|替换绘图的当前转换矩阵
+setTransform()	|将当前转换重置为单位矩阵，然后运行 transform()
+
+
+#### 缩放
+
+    context.strokeStyle = 'white';
+    context.strokeRect(5,5,50,25);//原大小
+    context.scale(2,2);
+    context.strokeRect(5,5,50,25);//放大两倍
+    context.scale(2,2);
+    context.strokeRect(5,5,50,25);//放大四倍
+    
+>上例可以看到，在设置 scale() 方法之后，无论是线条的宽度还是坐标的位置，都被放大了。并且 scale() 的效果是可以叠加的，也就是说，上例使用了两次 scale(2,2) 那么，最后一个矩形相对于第一个矩形长和宽，以及坐标的位置就放大了 4 倍。
+
+#### 旋转
+
+    context.rotate(angle)
+    
+- angle : 旋转角度，以弧度计。 如需将角度转换为弧度，请使用 degrees*Math.PI/180 公式进行计算。 举例：如需旋转 5 度，可规定下面的公式：5*Math.PI/180。
+
+
+    例：
+    context.fillStyle = 'white';
+    context.rotate(20*Math.PI/180);
+    context.fillRect(70,30,200,100);
+
+ 
+ >在进行图形变换的时候，我们需要**画布旋转，然后再绘制图形**。
+  这样的结果是，我们使用的图形变换的方法都是作用在画布上的，既然对画布进行了变换，那么在接下来绘制的图形都会变换。这点是需要注意的。
+  比如我对画布使用了 rotate(20*Math.PI/180) 方法，就是将画布旋转了 20°，然后之后绘制的图形都会旋转 20°。
+
+
+&nbsp;
+### 图像绘制
+
+
+ **方法**|**描述**
+------------- | ------------- 
+drawImage()	|向画布上绘制图像、画布或视频
+
+    context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
+    
+- img：规定要使用的图像、画布或视频
+- sx：可选。开始剪切的 x 坐标位置
+- sy：可选。开始剪切的 y 坐标位置
+- swidth：可选。被剪切图像的宽度
+- sheight：可选。被剪切图像的高度
+- x：在画布上放置图像的 x 坐标位置
+- y：在画布上放置图像的 y 坐标位置
+- width：可选。要使用的图像的宽度（伸展或缩小图像）
+- height：可选。要使用的图像的高度（伸展或缩小图像）

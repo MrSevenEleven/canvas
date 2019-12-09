@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-    <canvas id="canvas" width="400" height="400"></canvas>
+    <canvas id="canvas" width="600" height="600"></canvas>
     <script>
         var canvas=document.getElementById("canvas");
         var context=canvas.getContext("2d");
@@ -44,18 +44,35 @@
         // context.strokeStyle = '#fff';
         // context.strokeRect(130, 10, 100, 100);
 
-        // 模糊
-        context.beginPath();
-        context.arc(100,100,50,0,2*Math.PI,false);
-        context.fillStyle = '#fff';
-        context.shadowBlur = 20;
-        context.shadowColor = '#fff';
-        context.fill()
+        // 阴影
+        // context.beginPath();
+        // context.arc(100,100,50,0,2*Math.PI,false);
+        // context.fillStyle = '#fff';
+        // context.shadowBlur = 20;
+        // context.shadowColor = '#fff';
+        // context.fill()
 
+        // 渐变
+        // var my_gradient=context.createLinearGradient(0,0,0,120);
+        // my_gradient.addColorStop(0,"red");
+        // my_gradient.addColorStop(1,"green");
+        // context.fillStyle=my_gradient;
+        // context.fillRect(10,10,100,100);
+        // context.fillRect(120,0,100,150);
+        // context.fillRect(230,30,100,150);
 
+        //缩放
+        // context.strokeStyle = 'white';
+        // context.strokeRect(5,5,50,25);
+        // context.scale(2,2);
+        // context.strokeRect(5,5,50,25);
+        // context.scale(2,2);
+        // context.strokeRect(5,5,50,25);
 
-
-
+        // 旋转
+        context.fillStyle = 'white';
+        context.rotate(20*Math.PI/180);
+        context.fillRect(70,30,200,100);
     </script>
 </body>
 </html>
