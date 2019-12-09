@@ -173,13 +173,15 @@ addColorStop()	|规定渐变对象中的颜色和停止位置
 - x1：结束渐变的 x 坐标
 - y1：结束渐变的 y 坐标
 
-        例：
-        var grd = context.createLinearGradient(100,100,100,200);
-        grd.addColorStop(0,'pink');//设置颜色断点，可添加多个addColorStop
-        grd.addColorStop(1,'white');
-        
-        context.fillStyle = grd;//将创建的渐变作为颜色赋值给fillStyle属性
-        context.fillRect(100,100,200,200);
+```
+例：
+var grd = context.createLinearGradient(100,100,100,200);
+grd.addColorStop(0,'pink');//设置颜色断点，可添加多个addColorStop
+grd.addColorStop(1,'white');
+context.fillStyle = grd;//将创建的渐变作为颜色赋值给fillStyle属性
+context.fillRect(100,100,200,200);
+```
+
     
 >注：如果fillRect创建的图形坐标尺寸与createLinearGradient内参数设置的渐变尺寸不吻合，相当于fillRect图形截取createLinearGradient对应坐标中的一段填充
 
@@ -244,3 +246,54 @@ drawImage()	|向画布上绘制图像、画布或视频
 - y：在画布上放置图像的 y 坐标位置
 - width：可选。要使用的图像的宽度（伸展或缩小图像）
 - height：可选。要使用的图像的高度（伸展或缩小图像）
+
+
+----------
+&nbsp;
+## 2.炫酷背景特效的通性
+
+### 背景
+
+将背景设置为纯色、渐变或可平铺的图形？
+- 为了适配所有的设备，尽可能让所有的设备都能够显示出相同的效果  
+    渐变色网站：[uigradients](https://uigradients.com "uigradients")
+ 
+    
+&nbsp;
+### 炫酷
+- 动
+- 随机
+
+#### 让页面上的元素动起来的几种方式：
+- gif 图
+- CSS3 动画
+- js 控制
+- svg
+- Canvas
+
+#### 设置为“随机”动画的好处：  
+人都有一种心理，一旦找到事物发展的规律，便对其失去了兴趣。
+也就是说，如果你的动画是一个规律的，并且规律是简单可寻的，那么用户在看过一次之后，找到了其中的规律，第二次再看的时候便不会再对其感兴趣。
+相反，我们就可以写出让用户每一次打开都不一样的特效，这样用户会感觉到“新奇”，便会对你的网站感兴趣。
+
+&nbsp;
+### 效果
+
+
+这里我们说的效果主要是与鼠标之间的交互效果。
+我们经常使用的与鼠标之间的交互效果主要有两种：
+
+- 鼠标跟随
+- 视觉差
+
+**总结：**
+- 背景  
+    - 单一颜色
+    - 渐变
+    - 平铺
+- 炫酷  
+    - 动
+    - 随机
+- 特效（与用户交互）  
+    - 鼠标跟随
+    - 视觉差
