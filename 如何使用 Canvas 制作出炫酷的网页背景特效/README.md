@@ -310,6 +310,60 @@ drawImage()	|向画布上绘制图像、画布或视频
 
 #### 实现随机粒子特效
 ![粒子图](/Sourse/3.png "粒子图")
-[Demo3.1](chapter3.1.html "Demo3.1")
+
+
+[Demo3.1](chapter3.0.html "Demo3.1")
+
+-------------
+&nbsp;
+### 4.使你的随机粒子动起来
+
+#### animate() 函数
+
+其实，Canvas 制作动画是一个不断擦除再重绘的过程，跟最原始实现动画的方式类似。在纸片上画每一帧，然后以很快的速度翻动小本本，就会有动画的效果。  
+现在我们实现动画需要在很短的时间内不断的清除内容再重新绘制，新的图形和原先清除的图形之间有某种位置关系，速度足够快的话，我们就会看到动画的效果。  
+
+要清除当前屏幕,用到的是canvas的content.clearRect() 方法。  
+
+    context.clearRect(x,y,width,height);
+    
+- x：要清除的矩形左上角的 x 坐标
+- y：要清除的矩形左上角的 y 坐标
+- width：要清除的矩形的宽度，以像素计
+- height：要清除的矩形的高度，以像素计
+
+
+    window.requestAnimationFrame() 
+    
+window.requestAnimationFrame()方法告诉浏览器，你希望执行动画，并请求浏览器调用指定的函数在下一次重绘之前更新动画。该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。  
+
+使用 requestAnimationFrame() 函数递归的调用 animate() 函数来实现动画的效果。
+
+    function animate() {
+        content.clearRect(0, 0, WIDTH, HEIGHT);
+
+        for (var i in round) {
+            round[i].move();
+        }
+        requestAnimationFrame(animate);
+    }
+    
+    
+#### 创建 move() 函数
+
+使用 move() 函数来改变 round 的坐标，实现运动效果。
+
+    Round_item.prototype.move = function () {
+        this.y -= 0.15;
+        if (this.y <= -10) {
+            this.y = HEIGHT + 10;
+        }
+        this.draw();
+    };
+
+
+
+
+
 
 
