@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            margin: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            /*cursor: none;*/
+            background: black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script>
+    var ctx = document.getElementById('canvas'),
+        content = ctx.getContext('2d'),
+        round = [],
+        WIDTH,
+        HEIGHT,
+        initRoundPopulation = 1000,
+        useChache = true;
+
+
+    WIDTH = document.documentElement.clientWidth;
+    HEIGHT = document.documentElement.clientHeight;
+
+    ctx.width = WIDTH;
+    ctx.height = HEIGHT;
+
+    var cacheCanvas = document.createElement("canvas");
+    cacheCtx = cacheCanvas.getContext("2d");
+    cacheCanvas.width = WIDTH;
+    cacheCanvas.height = HEIGHT;
+
+    if( !useChache){
+        curCon=content;
+    }else{
+        curCon=cacheCtx;
+    }
+
+    function Round_item(index, x, y) {
+        this.index = index;
+        this.x = x;
+        this.y = y;
+        this.useCache = useChache;
+        this.r = Math.random() * 30 + 1;
+        // this.r = Math.random() * 2 + 1;
+        var alpha = (Math.floor(Math.random() * 10) + 1) / 10 / 2;
+        this.color = "rgba(255,255,255," + alpha + ")";
+    }
+
+    Round_item.prototype.draw = function () {
+        // curCon.fillStyle = this.color;
+        // curCon.shadowBlur = this.r * 2;
+        // curCon.beginPath();
+        // curCon.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
+        // curCon.closePath();
+        // curCon.fill();
+
+        curCon.lineWidth = 4;
+        for(var i=4;i<this.r;i+=4){
+            curCon.beginPath();
+            curCon.strokeStyle = 'hsl('+Math.random()*360+',100%,80%)';
+            curCon.arc(this.x, this.y , i , 0 , 2*Math.PI);
+            curCon.stroke();
+        }
+
+
+    };
+
+    // Round_item.prototype.cache = function () {
+    //     this.cacheCtx.save();//保存画布状态
+    //     this.cacheCtx.fillStyle = this.color;
+    //     this.cacheCtx.shadowColor = "white";
+    //     this.cacheCtx.shadowBlur = this.r * 2;
+    //     this.cacheCtx.beginPath();
+    //     this.cacheCtx.arc(this.r * 3, this.r * 3, this.r, 0, 2 * Math.PI);
+    //     this.cacheCtx.closePath();
+    //     this.cacheCtx.fill();
+    //     this.cacheCtx.restore();//恢复画布状态，与save()成对使用
+    // };
+    function animate() {
+        loop();
+        content.clearRect(0, 0, WIDTH, HEIGHT);
+        cacheCtx.clearRect(0, 0, WIDTH, HEIGHT);
+
+
+        for (var i in round) {
+            round[i].move();
+        }
+        if( useChache){
+            content.drawImage(cacheCanvas,0, 0);
+        }
+        requestAnimationFrame(animate)
+    }
+
+    Round_item.prototype.move = function () {
+        this.y -= 10.15;
+        // this.y -= 0.5;
+        if (this.y <= -10) {
+            this.y = HEIGHT + 10;
+        }
+        this.draw();
+    };
+
+
+    function init() {
+        for (var i = 0; i < initRoundPopulation; i++) {
+            round[i] = new Round_item(i, Math.random() * WIDTH, Math.random() * HEIGHT);
+            round[i].draw();
+        }
+        animate();
+
+    }
+
+    init();
+
+    var frame = 0;
+    var allFrameCount = 0;
+    var lastTime = Date.now();
+    var lastFameTime = Date.now();
+
+    function loop() {
+        var now = Date.now();
+        var fs = (now - lastFameTime);
+        // var fps = Math.round(1000 / fs);
+
+        lastFameTime = now;
+        // 不置 0，在动画的开头及结尾记录此值的差值算出 FPS
+        allFrameCount++;
+        frame++;
+
+        if (now > 1000 + lastTime) {
+            var fps = Math.round((frame * 1000) / (now - lastTime));
+            console.log(`${new Date()} 1S内 FPS：`, fps);
+            frame = 0;
+            lastTime = now;
+        };
+
+    }
+</script>
+</body>
+</html>
